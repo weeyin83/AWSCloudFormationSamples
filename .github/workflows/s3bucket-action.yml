@@ -7,6 +7,8 @@ on:
   push:
     branches:
     - main
+    paths:
+    - S3Bucket
 
 
 
@@ -24,7 +26,7 @@ jobs:
 
     # We take the files inside the CloudFormation folder and zip them together
     - name: Zip CloudFormation files
-      run: octo pack --id="S3BucketTemplate" --format="zip" --version=${{ github.run_number }} --basePath=${{ github.workspace }} --outFolder=${{ github.workspace }}\output
+      run: octo pack --id="S3BucketTemplate" --format="zip" --version=${{ github.run_number }} --basePath=${{ github.workspace }}\S3Bucket\ --outFolder=${{ github.workspace }}\output
     # We take the zip file we created and push them to the Octopus Deploy server instance
     - name: Push CloudFormation files
       run: octo push --package="${{ github.workspace }}\output\S3BucketTemplate.${{ github.run_number }}.zip" --server="${{ secrets.OCTOPUSSERVERURL }}" --apiKey="${{ secrets.OCTOPUSSERVERAPIKEY }}" --space="${{ secrets.OCTOPUSSERVER_SPACE }}"
