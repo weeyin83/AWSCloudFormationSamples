@@ -27,7 +27,7 @@ jobs:
         with:
           args: "*.yaml"
       
-      - name: cfn-nag-action
-        uses: minchao/cfn-nag-action@v0.1
-        with: 
-          args: args: '--input-path *.yaml'
+      - name: Stelligent cfn_nag
+  # You may pin to the exact commit or the version.
+  # uses: stelligent/cfn_nag@1893b15187c451b966edbe8cc29633ca10203f8d
+        uses: stelligent/cfn_nag@v0.8.6
